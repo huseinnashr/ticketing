@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: huseinnashr/auth
+    - image: huseinnashr/ticketing-auth
       context: auth
       docker:
         dockerfile: Dockerfile
