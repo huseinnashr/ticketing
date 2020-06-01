@@ -13,3 +13,14 @@ stan.on("connect", () => {
   const publisher = new TicketCreatedPublisher(stan);
   publisher.publish({ id: "123", title: "Concert", price: 20 });
 });
+
+process.on("SIGINT", () => {
+  stan.close();
+});
+
+process.on("message", (m) => {
+  if (m === "GRACEFUL_IPC") {
+    stan.close();
+    process.exit();
+  }
+});
