@@ -6,7 +6,7 @@ import {
   NotAuthorizedError,
 } from "@hntickets/common";
 import { Order } from "../models/order";
-import { OrderCancelledPublisher } from "../events/publisher/order-cancelled-publisher";
+import { OrderCancelledPublisher } from "../events/publishers/order-cancelled-publisher";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
