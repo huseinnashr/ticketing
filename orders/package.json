@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
-    "test": "jest --watch --no-cache"
+    "test": "jest --runInBand --watch --no-cache"
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "globalSetup": "./src/test/globalSetup.ts",
+    "globalTeardown": "./src/test/globalTeardown.ts",
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
