@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { Order } from "../../models/order";
 import { OrderStatus } from "@hntickets/common";
 import { stripe } from "../../stripe";
+import { Payment } from "../../models/payment";
 
 it("returns a 404 when purchasing an order that does not exist", async () => {
   await request(app)
@@ -84,5 +85,11 @@ it("returns a 201 with valid inputs", async () => {
   });
 
   expect(stripeCharge).toBeDefined();
-  expect(stripeCharge?.currency).toEqual("usd");
+  expect(stripeCharge!.currency).toEqual("usd");
+
+  const payment = await Payment.findOne({
+    orderId: order.id,
+    stripeId: stripeCharge!.id,
+  });
+  expect(payment).not.toBeNull();
 });
