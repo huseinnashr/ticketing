@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hntickets/common": "^1.0.11",
+    "@hntickets/common": "^1.0.12",
     "@types/bull": "^3.13.0",
     "bull": "^3.14.0",
     "node-nats-streaming": "^0.3.2",
