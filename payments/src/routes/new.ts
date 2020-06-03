@@ -9,6 +9,7 @@ import {
   OrderStatus,
   BadRequestError,
 } from "@hntickets/common";
+import { stripe } from "../stripe";
 
 const router = express.Router();
 
@@ -31,6 +32,12 @@ router.post(
     if (order.status === OrderStatus.Cancelled) {
       throw new BadRequestError("Canno pay for a cancelled order");
     }
+
+    await stripe.charges.create({
+      currency: "usd",
+      amount: order.price * 100,
+      source: token,
+    });
 
     res.send({ success: true });
   }
